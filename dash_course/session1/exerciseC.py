@@ -1,5 +1,7 @@
 '''
-Exercise C: using the same shades.csv create a new app, where the layout has two new Dash Core Components that you haven’t used so far. --> Use a range slider for the L column.
+Exercise C: using the same shades.csv create a new app, where the layout has two new Dash Core Components that you haven’t used so far. 
+--> Use a range slider for the L column.
+--> 
 '''
 
 from dash import Dash, html, dcc
@@ -32,9 +34,12 @@ app = Dash(__name__)
 app.layout = html.Div([
     html.H1(children='Shades App'),
     html.Hr(),
-    html.Div(
-        dcc.Dropdown(shades.brand.unique(), value='Revlon')
-    ),
+    html.Div([
+        dcc.Dropdown(shades.brand.unique(), value='Revlon'),
+        dcc.Input(id='input_number',
+                  type='text',
+                  placeholder='Input Hex Code')
+    ]),
     html.Div(
         dcc.RadioItems(shades_groups, inline=True)
     ),
