@@ -1,15 +1,13 @@
 '''
-Exercise B: using the same shades.csv create another app that incorporates Dash AG Grid into the layout:
+1. A Dropdown that uses the column brand as the dropdown options. Make sure the brand names are unique (do not repeat themselves). Then, assign “Revlon” as the initial value.
 
-1. The Dash AG Grid should represent the complete dataset with all its columns.
+2. A RadioItems component in which the values from the column named group are assigned to the options property. The options should be unique and sorted from 0 to 7.
 
-2. Using Pagination, add automatic pagination to Dash AG Grid and make sure all columns fit into the screen with no horizontal scroll bar (using the columnSize property).
+3. Update the options property of the RadioItems component so that the values (of the options) represent numbers from 0 to 7, but the labels are their respective strings (see Readme-shades for the strings).
 '''
 
 from dash import Dash, html, dcc
-import dash_ag_grid as dag
 import pandas as pd
-import plotly.express as px
 
 shades = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/Dash-Course/makeup-shades/shades.csv')
 
@@ -41,14 +39,7 @@ app.layout = html.Div([
         dcc.Dropdown(shades.brand.unique(), value='Revlon')
     ),
     html.Div(
-        dcc.RadioItems(shades_groups, inline=True)
-    ),
-    html.Div(
-        dag.AgGrid(
-            id='data_table',
-            rowData=shades.to_dict('records'),
-            columnDefs=[{'field': i} for i in shades.columns]
-        )
+        dcc.RadioItems(shades_groups)
     )
 ])
 
