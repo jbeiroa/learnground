@@ -39,7 +39,7 @@ app.layout = dbc.Container([
     Input(component_id='my-button', component_property='n_clicks'),
     State(component_id='yaxis-options', component_property='value'),
     State(component_id='xaxis-options', component_property='value'),
-    
+    prevent_initial_call=True
 )
 def update_graph(_, y_chosen, x_chosen):
     if y_chosen=='pop' and x_chosen=='country':
